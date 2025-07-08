@@ -4,3 +4,26 @@
 #include "tipoImovel.h"
 using namespace std;
 
+int Imovel::nextId = 1;
+
+Imovel::Imovel(TipoImovel tipo, int proprietarioId, float lat, float lng, double preco, std::string endereco){
+    this->id = nextId++;
+    this->tipo = tipo;
+    this->proprietarioId = proprietarioId;
+    this->lat = lat;
+    this->lng = lng;
+    this->preco = preco;
+    this->endereco = endereco;
+}
+
+int Imovel::getId(){
+    return this->id;
+}
+
+float Imovel::getLat(){
+    return this->lat;
+}
+
+float Imovel::getLng(){
+    return this->lat;
+}

@@ -13,5 +13,7 @@ public:
     float lng;
     Corretor(std::string telefone, bool avaliador, float lat, float lng, std::string nome);
     void setTelefone(std::string new_telefone);
+    int getId();
+    bool getAvaliador();
 };
 #endif

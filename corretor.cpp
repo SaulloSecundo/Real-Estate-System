@@ -17,3 +17,11 @@ Corretor::Corretor(std::string telefone, bool avaliador, float lat, float lng, s
 Corretor::setTelefone(string new_telefone){
     this->telefone = new_telefone;
 }
+
+int Corretor::getId(){
+    return this->id;
+}
+
+bool Corretor::getAvaliador(){
+    return this->avaliador;
+}

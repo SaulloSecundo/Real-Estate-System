@@ -9,10 +9,13 @@ private:
     int proprietarioId;
     std::string endereco;
     double preco;
-    TipoImovel tipo;
-public:
     float lat;
     float lng;
+    TipoImovel tipo;
+public:
     Imovel(TipoImovel tipo, int proprietarioId, float lat, float lng, double preco, std::string endereco);
+    int getId();
+    float getLat();
+    float getLng();
 };
 #endif
