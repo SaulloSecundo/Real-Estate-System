@@ -4,7 +4,8 @@
 #include "tipoImovel.h"
 using namespace std;
 
-TipoImovel::strToTipo(const string& tipoStr){
+TipoImovel strToTipo(const string& tipoStr){
+    
     string tipo = tipoStr;
     transform(tipo.begin(), tipo.end(), tipo.begin(), ::tolower);
 

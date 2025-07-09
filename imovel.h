@@ -13,7 +13,7 @@ private:
     float lng;
     TipoImovel tipo;
 public:
-    Imovel(TipoImovel tipo, int proprietarioId, float lat, float lng, double preco, std::string endereco);
+    Imovel(std::string tipo, int proprietarioId, float lat, float lng, double preco, std::string endereco);
     int getId();
     float getLat();
     float getLng();
