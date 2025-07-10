@@ -5,7 +5,7 @@ using namespace std;
 
 int Corretor::nextId = 1;
 
-Corretor::Corretor(std::string telefone, bool avaliador, float lat, float lng, std::string nome){
+Corretor::Corretor(string telefone, bool avaliador, float lat, float lng, string nome){
     this->id = nextId++;
     this->telefone = telefone;
     this->avaliador = avaliador;

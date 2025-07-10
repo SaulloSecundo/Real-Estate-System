@@ -13,6 +13,7 @@ private:
     float lng;
     TipoImovel tipo;
 public:
+    bool visitado = 0;
     Imovel(std::string tipo, int proprietarioId, float lat, float lng, double preco, std::string endereco);
     int getId();
     float getLat();
