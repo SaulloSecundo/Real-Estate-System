@@ -14,7 +14,7 @@ Corretor::Corretor(string telefone, bool avaliador, float lat, float lng, string
     this->nome = nome;
 }
 
-Corretor::setTelefone(string new_telefone){
+void Corretor::setTelefone(string new_telefone){
     this->telefone = new_telefone;
 }
 

@@ -3,8 +3,10 @@
 #include <vector>
 #include <cmath>
 #include <limits>
+#include <iomanip>
 #include "funcoes_auxiliares.h"
 #include "corretor.h"
+#include "cliente.h"
 #include "imovel.h"
 #include "tipoImovel.h"
 
@@ -26,6 +28,22 @@ void lerCorretores(vector<Corretor*>& corretores){
         getline(cin >> std::ws, nome); // lê o restante da linha como nome completo
 
         corretores.push_back(new Corretor(telefone, avaliador, lat, lng, nome));
+    }
+}
+
+void lerClientes(vector<Cliente*> &clientes){
+    int num_clientes;
+    cin >> num_clientes;
+
+    for(int ii = 0; ii<num_clientes; ii++){
+        string linha;
+        // ler telefone, avaliador, lat, lon
+        string telefone;
+        cin >> telefone;
+        string nome;
+        getline(cin >> std::ws, nome); // lê o restante da linha como nome completo
+
+        clientes.push_back(new Cliente(telefone, nome));
     }
 }
 
@@ -74,6 +92,7 @@ double haversine(double lat1, double lon1, double lat2, double lon2) {
     return EARTH_R * c;
 }
 
+//Função para conversão de um tempo total, em minutos, para horas e minutos faltantes
 void hora_minuto(int &horas, int &minutos, int &tempo_acumulado, double distancia){
     int tempo_chegada = static_cast<int>(distancia * 2);
     tempo_acumulado = tempo_acumulado + tempo_chegada;
@@ -132,4 +151,38 @@ void definirAgenda(vector<Corretor *> &avaliadores, vector<vector<Imovel *>> &im
             lngAtual = imovel_a_visitar->getLng();
         }
     }
+}
+
+//método para imprimir os imóveis a serem visitados por cada corretor avaliador em seus respectivos horários 
+void imprimirAgenda(vector<Corretor*> &avaliadores, vector<vector<Imovel *>> &agendaVisitas, vector<vector<Horario*>> &horarioVisitas){
+    
+    for(size_t ii = 0; ii < avaliadores.size(); ii++){
+        for(size_t jj = 0; jj < agendaVisitas[ii].size(); jj++){
+            std::cout << "Corretor " << avaliadores[ii]->getId() << std::endl;
+            std::cout << std::setfill('0') << std::setw(2) << horarioVisitas[ii][jj]->hora << ":" 
+                    << std::setw(2) << horarioVisitas[ii][jj]->minuto << " Imóvel " << agendaVisitas[ii][jj]->getId() << std::endl;
+        }
+    }
+}
+
+//método para desalocar os objetos criados com "new" nas ED vector
+//utilizado para liberar a memória alocada para a manipulação das entradas
+void DesalocarObjetos(vector<Corretor*> &corretores, vector<Cliente*> &clientes, vector<Imovel*> &imoveis, vector<vector<Horario*>> &horarioVisitas) {
+    // Deleta corretores
+    for (Corretor* c : corretores)
+        delete c;
+    corretores.clear();
+
+    // Deleta imóveis
+    for (Imovel* imv : imoveis)
+        delete imv;
+    imoveis.clear();
+
+    // Deleta objetos Horario* criados com new
+    for (auto& vetorHorarios : horarioVisitas) {
+        for (Horario* h : vetorHorarios)
+            delete h;
+        vetorHorarios.clear();
+    }
+    horarioVisitas.clear();
 }

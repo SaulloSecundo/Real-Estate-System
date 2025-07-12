@@ -11,6 +11,6 @@ Cliente::Cliente(string telefone, string nome){
     this->nome = nome;
 }
 
-Cliente::setTelefone(string new_telefone){
+void Cliente::setTelefone(string new_telefone){
     this->telefone = new_telefone;
 }

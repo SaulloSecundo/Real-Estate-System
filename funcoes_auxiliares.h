@@ -10,9 +10,13 @@ struct Horario {
 };
 
 void lerCorretores(std::vector<Corretor *> &corretores);
+void lerClientes(std::vector<Cliente*> &clientes);
 void lerImoveis(std::vector<Imovel *> &imoveis);
 void corretoresAvaliadores(std::vector<Corretor *> &avaliadores, std::vector<Corretor *> &corretores);
 void distribuirImoveis(std::vector<std::vector<Imovel *>> &imoveisDistribuidos, std::vector<Imovel *> &imoveis, std::vector<Corretor *> &avaliadores);
 void hora_minuto(int &horas, int &minutos, double distancia);
 void definirAgenda(std::vector<Corretor *> &avaliadores, std::vector<std::vector<Imovel *>> &imoveisDistribuidos, std::vector<std::vector<Imovel*>> agendaVisitas, std::vector<std::vector<Horario*>> &horarioVisitas);
+void imprimirAgenda(std::vector<Corretor*> &avaliadores, std::vector<std::vector<Imovel *>> &agendaVisitas, std::vector<std::vector<Horario*>> &horarioVisitas);
+void DesalocarObjetos(std::vector<Corretor*> &corretores, std::vector<Cliente*> &clientes, std::vector<Imovel*> &imoveis, std::vector<std::vector<Horario*>> &horarioVisitas);
+
 #endif
