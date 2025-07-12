@@ -12,4 +12,6 @@ TipoImovel strToTipo(const string& tipoStr){
     if (tipo == "casa") return CASA;
     if (tipo == "apartamento") return APARTAMENTO;
     if (tipo == "terreno") return TERRENO;
+
+    return INDEFINIDO; 
 }

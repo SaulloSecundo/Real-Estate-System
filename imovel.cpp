@@ -25,5 +25,5 @@ float Imovel::getLat(){
 }
 
 float Imovel::getLng(){
-    return this->lat;
+    return this->lng;
 }

@@ -4,7 +4,8 @@
 enum TipoImovel{
     CASA,
     APARTAMENTO,
-    TERRENO
+    TERRENO,
+    INDEFINIDO
 };
 
 TipoImovel strToTipo(const std::string& tipoStr);

@@ -5,10 +5,6 @@
 #include <limits>
 #include <iomanip>
 #include "funcoes_auxiliares.h"
-#include "corretor.h"
-#include "cliente.h"
-#include "imovel.h"
-#include "tipoImovel.h"
 
 using namespace std;
 
@@ -95,10 +91,12 @@ double haversine(double lat1, double lon1, double lat2, double lon2) {
 //Função para conversão de um tempo total, em minutos, para horas e minutos faltantes
 void hora_minuto(int &horas, int &minutos, int &tempo_acumulado, double distancia){
     int tempo_chegada = static_cast<int>(distancia * 2);
-    tempo_acumulado = tempo_acumulado + tempo_chegada;
+    
+    int tempo_visita = tempo_acumulado + tempo_chegada;
+    horas = tempo_visita / 60;
+    minutos = tempo_visita % 60;
 
-    horas = (tempo_acumulado - (tempo_acumulado % 60))/60;
-    minutos = tempo_acumulado % 60;
+    tempo_acumulado = tempo_visita + 60; // 1h de visita após a chegada
 }
 
 //método para estruturar a agenda de visitas de cada corretor
@@ -142,10 +140,9 @@ void definirAgenda(vector<Corretor *> &avaliadores, vector<vector<Imovel *>> &im
             Imovel* imovel_a_visitar = imoveisDistribuidos[ii][idImovel];
             imovel_a_visitar->visitado = true;
             agendaVisitas[ii].push_back(imovel_a_visitar);
-
+            
             hora_minuto(horas, minutos, tempo_acumulado, menorDist); //calcula o horário em horas e minutos da visita registrada, dado o tempo acumulado em minutos;
             horarioVisitas[ii].push_back(new Horario(horas, minutos));
-            tempo_acumulado += 60;
 
             latAtual = imovel_a_visitar->getLat();  // atualiza posição para o próximo cálculo
             lngAtual = imovel_a_visitar->getLng();
@@ -157,11 +154,12 @@ void definirAgenda(vector<Corretor *> &avaliadores, vector<vector<Imovel *>> &im
 void imprimirAgenda(vector<Corretor*> &avaliadores, vector<vector<Imovel *>> &agendaVisitas, vector<vector<Horario*>> &horarioVisitas){
     
     for(size_t ii = 0; ii < avaliadores.size(); ii++){
+        std::cout << "Corretor " << avaliadores[ii]->getId() << std::endl;
         for(size_t jj = 0; jj < agendaVisitas[ii].size(); jj++){
-            std::cout << "Corretor " << avaliadores[ii]->getId() << std::endl;
             std::cout << std::setfill('0') << std::setw(2) << horarioVisitas[ii][jj]->hora << ":" 
                     << std::setw(2) << horarioVisitas[ii][jj]->minuto << " Imóvel " << agendaVisitas[ii][jj]->getId() << std::endl;
         }
+        cout<<endl;
     }
 }
 
