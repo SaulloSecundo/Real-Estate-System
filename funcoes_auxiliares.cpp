@@ -26,7 +26,7 @@ void lerCorretores(vector<Corretor*>& corretores){
         corretores.push_back(new Corretor(telefone, avaliador, lat, lng, nome));
     }
 }
-
+//método para leitura das entradas referentes aos clientes 
 void lerClientes(vector<Cliente*> &clientes){
     int num_clientes;
     cin >> num_clientes;
@@ -43,7 +43,7 @@ void lerClientes(vector<Cliente*> &clientes){
     }
 }
 
-//Metodo de leitura dos imoveis 
+//método para leitura das entradas referentes aos 
 void lerImoveis(vector<Imovel*>& imoveis){
     int num_imoveis;
     cin >> num_imoveis;
@@ -164,7 +164,7 @@ void imprimirAgenda(vector<Corretor*> &avaliadores, vector<vector<Imovel *>> &ag
 }
 
 //método para desalocar os objetos criados com "new" nas ED vector
-//utilizado para liberar a memória alocada para a manipulação das entradas
+//utilizado para liberar a memória alocada pelos processos anteriores
 void DesalocarObjetos(vector<Corretor*> &corretores, vector<Cliente*> &clientes, vector<Imovel*> &imoveis, vector<vector<Horario*>> &horarioVisitas) {
     // Deleta corretores
     for (Corretor* c : corretores)
