@@ -46,10 +46,10 @@ diff minha_saida1.txt teste1_saida.txt
 
 ## Sobre o agendamento
 
-	•	O tempo de deslocamento entre imóveis é calculado como:
+- O tempo de deslocamento entre imóveis é calculado como:
 tempo = distância_em_km * 2 minutos
-	•	Cada visita leva 60 minutos.
-	•	O horário inicial dos avaliadores é 09:00 da manhã.
+- Cada visita leva 60 minutos.
+- O horário inicial dos avaliadores é 09:00 da manhã.
 
 ## Autores
 
