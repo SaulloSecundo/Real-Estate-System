@@ -103,7 +103,7 @@ void hora_minuto(int &horas, int &minutos, int &tempo_acumulado, double distanci
 //Aqui, os imóveis a serem visitados e seus respectivos horários de visita são organizados de forma a tornar eficiente o deslocamento de cada avaliador 
 void definirAgenda(vector<Corretor *> &avaliadores, vector<vector<Imovel *>> &imoveisDistribuidos, vector<vector<Imovel*>> &agendaVisitas, vector<vector<Horario*>> &horarioVisitas){
 
-    for (int ii = 0; ii < avaliadores.size(); ii++) {
+    for (size_t ii = 0; ii < avaliadores.size(); ii++) {
         double latAtual = avaliadores[ii]->lat;
         double lngAtual = avaliadores[ii]->lng;
 
@@ -121,7 +121,7 @@ void definirAgenda(vector<Corretor *> &avaliadores, vector<vector<Imovel *>> &im
             //percorre todos os imóveis de um determinado (ii) avaliador
             //Esse loop foi definido para conseguir a menor distância entre a posição atual do avaliador e um imóvel dentre um subconjuntos de imóveis ainda não visitados
             //Caso ainda existam imóveis não visitados, a distância é calculada e o id do imóvel mais próximo é armazenado
-            for (int jj = 0; jj < imoveisDistribuidos[ii].size(); jj++) {
+            for (size_t jj = 0; jj < imoveisDistribuidos[ii].size(); jj++) {
                 Imovel* imv = imoveisDistribuidos[ii][jj];
                 if (!imv->visitado) {
                     double d = haversine(latAtual, lngAtual, imv->getLat(), imv->getLng());
@@ -159,7 +159,9 @@ void imprimirAgenda(vector<Corretor*> &avaliadores, vector<vector<Imovel *>> &ag
             std::cout << std::setfill('0') << std::setw(2) << horarioVisitas[ii][jj]->hora << ":" 
                     << std::setw(2) << horarioVisitas[ii][jj]->minuto << " Imóvel " << agendaVisitas[ii][jj]->getId() << std::endl;
         }
-        cout<<endl;
+        if(ii < (avaliadores.size() - 1)){
+            cout<<endl;
+        }
     }
 }
 
